@@ -818,7 +818,7 @@ ALWAYS_INLINE USED
 void MemoryAccess(ThreadState *thr, uptr pc, uptr addr,
     int kAccessSizeLog, bool kAccessIsWrite, bool kIsAtomic) {
   u64 *shadow_mem = (u64*)MemToShadow(addr);
-  DPrintf2("#%d: MemoryAccess: @%p %p size=%d"
+  Printf("#%d: MemoryAccess: @%p %p size=%d"
       " is_write=%d shadow_mem=%p {%zx, %zx, %zx, %zx}\n",
       (int)thr->fast_state.tid(), (void*)pc, (void*)addr,
       (int)(1 << kAccessSizeLog), kAccessIsWrite, shadow_mem,
@@ -1007,7 +1007,7 @@ void MemoryRangeImitateWriteOrResetRange(ThreadState *thr, uptr pc, uptr addr,
 ALWAYS_INLINE USED
 void FuncEntry(ThreadState *thr, uptr pc) {
   StatInc(thr, StatFuncEnter);
-  DPrintf2("#%d: FuncEntry %p\n", (int)thr->fast_state.tid(), (void*)pc);
+  Printf("#%d: FuncEntry %p\n", (int)thr->fast_state.tid(), (void*)pc);
   if (kCollectHistory) {
     thr->fast_state.IncrementEpoch();
     TraceAddEvent(thr, thr->fast_state, EventTypeFuncEnter, pc);
@@ -1029,7 +1029,7 @@ void FuncEntry(ThreadState *thr, uptr pc) {
 ALWAYS_INLINE USED
 void FuncExit(ThreadState *thr) {
   StatInc(thr, StatFuncExit);
-  DPrintf2("#%d: FuncExit\n", (int)thr->fast_state.tid());
+  Printf("#%d: FuncExit\n", (int)thr->fast_state.tid());
   if (kCollectHistory) {
     thr->fast_state.IncrementEpoch();
     TraceAddEvent(thr, thr->fast_state, EventTypeFuncExit, 0);

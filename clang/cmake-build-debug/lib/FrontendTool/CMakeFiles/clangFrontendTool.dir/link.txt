@@ -1,0 +1,2 @@
+/usr/bin/ar Dqc ../libclangFrontendTool.a CMakeFiles/obj.clangFrontendTool.dir/ExecuteCompilerInvocation.cpp.o
+/usr/bin/ranlib -D ../libclangFrontendTool.a
